@@ -1,0 +1,170 @@
+error-surface Source-Available License
+Version 1.0, February 2026
+
+Copyright (c) 2026 Frederick Finn / Finn Devs
+All rights reserved.
+
+Project: error-surface
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PREAMBLE
+
+This license governs the use, modification, and distribution of the
+error-surface software and all associated source code, documentation, and
+assets (collectively, "the Software"). It is designed to allow free personal
+use and study of the Software while reserving all commercial rights exclusively
+to Frederick Finn / Finn Devs.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. DEFINITIONS
+
+"The Software" means the error-surface source code, binaries, documentation,
+and any associated files made available under this license.
+
+"You" means the individual or entity exercising rights under this license.
+
+"Commercial Use" means any use of the Software, in whole or in part, that
+directly or indirectly generates revenue, provides commercial advantage, reduces
+costs in a commercial context, or is integrated into any product, service,
+workflow, or deliverable that is sold, licensed, subscribed to, or otherwise
+exchanged for money or other consideration. This includes but is not limited to:
+
+  a) Using the Software as part of client or freelance work;
+  b) Offering the Software or any derivative as a hosted or managed service;
+  c) Packaging the Software into a commercial product or distribution;
+  d) Using the Software to provide consulting, contracting, or professional
+     services for which compensation is received;
+  e) Any indirect monetization of the Software's capabilities or output.
+
+"Derivative Work" means any work that is based on or derived from the Software,
+including modifications, adaptations, translations, or works that incorporate
+any portion of the Software.
+
+"Distribute" means to make the Software or a Derivative Work available to any
+third party by any means, including but not limited to publishing, uploading,
+sharing, or transmitting.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. GRANT OF RIGHTS — PERMITTED USE
+
+Subject to the terms and conditions of this license, Frederick Finn / Finn Devs
+grants You a limited, non-exclusive, non-transferable, royalty-free right to:
+
+  a) View, read, and study the source code of the Software;
+  b) Download and run the Software solely for personal, non-commercial purposes;
+  c) Modify the Software solely for personal, non-commercial purposes;
+  d) Distribute Derivative Works strictly under the terms of this license
+     (see Section 4: Copyleft).
+
+These rights are granted solely for non-commercial purposes as defined in
+Section 1.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. RESTRICTIONS
+
+You may NOT, without prior written permission from Frederick Finn / Finn Devs:
+
+  a) Use the Software for any Commercial Use as defined in Section 1;
+  b) Distribute the Software or any Derivative Work under any license other
+     than this license;
+  c) Remove, alter, or obscure any copyright, attribution, or license notices
+     present in the Software;
+  d) Sublicense, sell, rent, lease, or transfer any rights in the Software
+     to any third party;
+  e) Use the name "error-surface", "Finn Devs", or "Frederick Finn" to endorse
+     or promote products or services derived from the Software without prior
+     written consent.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. COPYLEFT — SHARE-ALIKE REQUIREMENT
+
+If You Distribute any Derivative Work, You must:
+
+  a) Make the complete corresponding source code of the Derivative Work
+     publicly available under this license, at no charge, at the time of
+     distribution or immediately thereafter;
+  b) Include a prominent notice stating that the Derivative Work is derived
+     from error-surface and is subject to this license;
+  c) Retain all original copyright, attribution, and license notices from
+     the Software;
+  d) Include a copy of this license with every distribution of the Derivative
+     Work.
+
+You may not impose any additional restrictions on the recipients of Derivative
+Works beyond those contained in this license.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. ATTRIBUTION
+
+All permitted uses and distributions of the Software or Derivative Works must
+include the following attribution in a location reasonably visible to end users
+and in any accompanying documentation:
+
+  "This software is based on error-surface, developed by Frederick Finn /
+   Finn Devs. https://github.com/[your-github-handle]/error-surface"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. COMMERCIAL LICENSING
+
+If You wish to use the Software for any Commercial Use, You must obtain a
+separate written commercial license from Frederick Finn / Finn Devs prior to
+such use.
+
+To inquire about a commercial license, contact:
+  Frederick Finn / Finn Devs
+  [your contact email]
+
+Commercial licenses may be granted at the sole discretion of Frederick Finn /
+Finn Devs and may be subject to fees and additional terms.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7. CONTRIBUTIONS
+
+Any contribution intentionally submitted to this project is subject to the
+error-surface Contributor License Agreement (CLA). By submitting a contribution,
+You represent that You have read, understood, and agreed to the CLA. No
+contribution will be accepted without a signed CLA on file.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+8. DISCLAIMER OF WARRANTIES
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. IN NO EVENT SHALL
+FREDERICK FINN OR FINN DEVS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+9. TERMINATION
+
+Your rights under this license terminate automatically and immediately if You
+breach any of its terms. Upon termination, You must cease all use and
+distribution of the Software and destroy all copies in Your possession.
+
+Frederick Finn / Finn Devs reserves the right to pursue all available legal
+remedies for any breach of this license.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+10. GOVERNING LAW
+
+This license shall be governed by and construed in accordance with applicable
+law. Any disputes arising under this license shall be subject to the exclusive
+jurisdiction of the courts of the jurisdiction in which Frederick Finn /
+Finn Devs is domiciled.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+END OF LICENSE
