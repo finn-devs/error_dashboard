@@ -1,7 +1,6 @@
+# Error Dashboard - Qt6 Native Edition
 
-# Error Surface - Qt6 Native Edition
-
-Native C++/Qt6 rewrite of the Error Surface log analyzer with identical look and functionality to the Python/Dash version.
+Native C++/Qt6 Error Dashabord log analyzer.
 
 ## Features
 
@@ -12,9 +11,6 @@ Native C++/Qt6 rewrite of the Error Surface log analyzer with identical look and
 - **Full Filtering**: Severity groups, unit filter, search, threats-only view
 - **Detail Panel**: Click any row to expand full event details with threat breakdown
 - **CSV Export**: Export filtered results with timestamps
-
-<img width="2490" height="1533" alt="Screenshot from 2026-02-18 19-42-40" src="https://github.com/user-attachments/assets/746a0969-2f5a-40f6-afef-e2e25d3d56a4" />
-<img width="2490" height="1533" alt="Screenshot from 2026-02-18 19-42-51" src="https://github.com/user-attachments/assets/cb461de2-f66e-41e4-a9cc-be01bb7f630b" />
 
 ## Dependencies
 
@@ -36,7 +32,7 @@ sudo pacman -S cmake qt6-base qt6-charts systemd
 ## Build
 
 ```bash
-cd error-dashboard-qt
+cd error-surface-qt
 mkdir build && cd build
 cmake ..
 make -j$(nproc)
@@ -46,20 +42,20 @@ make -j$(nproc)
 
 ```bash
 sudo make install
-# Installs to /usr/local/bin/error-dashboard
+# Installs to /usr/local/bin/error-surface
 ```
 
 ## Usage
 
 ```bash
 # Run with defaults (7-day scan, 60min live window, 5s poll)
-./error-dashboard
+./error-surface
 
 # Custom lookback periods
-./error-dashboard --days 14 --live-window 120 --live-poll 10
+./error-surface --days 14 --live-window 120 --live-poll 10
 
 # Short flags
-./error-dashboard -d 3 -w 30 -p 15
+./error-surface -d 3 -w 30 -p 15
 ```
 
 ### Permissions
