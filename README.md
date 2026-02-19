@@ -32,7 +32,7 @@ sudo pacman -S cmake qt6-base qt6-charts systemd
 ## Build
 
 ```bash
-cd error-surface-qt
+cd error-dashboard-qt
 mkdir build && cd build
 cmake ..
 make -j$(nproc)
@@ -42,20 +42,20 @@ make -j$(nproc)
 
 ```bash
 sudo make install
-# Installs to /usr/local/bin/error-surface
+# Installs to /usr/local/bin/error-dashboard
 ```
 
 ## Usage
 
 ```bash
 # Run with defaults (7-day scan, 60min live window, 5s poll)
-./error-surface
+./error-dashboard
 
 # Custom lookback periods
-./error-surface --days 14 --live-window 120 --live-poll 10
+./error-dashboard --days 14 --live-window 120 --live-poll 10
 
 # Short flags
-./error-surface -d 3 -w 30 -p 15
+./error-dashboard -d 3 -w 30 -p 15
 ```
 
 ### Permissions
