@@ -1,73 +1,61 @@
 # cmake/GitVersion.cmake
-# Reads the current Git tag and extracts a 4-part version (MAJOR.MINOR.PATCH.TWEAK).
-# Expected tag format: v1.0.0.0
+# Reads the VERSION file from the repository root for the authoritative version.
+# Expected format: v1.0.0.0
 #
 # On success, sets in parent scope:
-#   GIT_TAG_FULL       — full tag string e.g. "v1.0.0.0"
-#   GIT_TAG_CLEAN      — tag without "v" prefix e.g. "1.0.0.0"
+#   VERSION_FULL       — full version string e.g. "v1.0.0.0"
+#   VERSION_CLEAN      — version without "v" prefix e.g. "1.0.0.0"
 #   VERSION_MAJOR
 #   VERSION_MINOR
 #   VERSION_PATCH
 #   VERSION_TWEAK
 #
 # Fails with a fatal error if:
-#   - Git is not found
-#   - No tag is found on the current commit
-#   - The tag does not match the expected vX.X.X.X format
+#   - VERSION file does not exist
+#   - VERSION file content does not match expected vX.X.X.X format
 
-find_package(Git REQUIRED)
+set(VERSION_FILE "${CMAKE_SOURCE_DIR}/VERSION")
 
-# Require an exact tag on HEAD — no dirty suffix, no commit distance
-execute_process(
-    COMMAND ${GIT_EXECUTABLE} describe --tags --exact-match --match "v[0-9]*.[0-9]*.[0-9]*.[0-9]*"
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_TAG_FULL
-    ERROR_VARIABLE  GIT_TAG_ERROR
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    RESULT_VARIABLE GIT_TAG_RESULT
-)
-
-if(NOT GIT_TAG_RESULT EQUAL 0)
+# Ensure VERSION file exists
+if(NOT EXISTS "${VERSION_FILE}")
     message(FATAL_ERROR
         "\n"
-        "  error-dashboard: No valid Git version tag found on HEAD.\n"
-        "  A tag in the format v1.0.0.0 is required to configure the build.\n"
-        "\n"
-        "  To tag the current commit:\n"
-        "    git tag v1.0.0.0\n"
-        "    git push origin v1.0.0.0\n"
-        "\n"
-        "  Git output: ${GIT_TAG_ERROR}"
+        "  error-dashboard: VERSION file not found at ${VERSION_FILE}.\n"
+        "  This file is required and must contain a version in the format v1.0.0.0.\n"
     )
 endif()
 
+# Read and strip whitespace
+file(READ "${VERSION_FILE}" VERSION_FULL)
+string(STRIP "${VERSION_FULL}" VERSION_FULL)
+
 # Validate format strictly: must be vMAJOR.MINOR.PATCH.TWEAK
-if(NOT GIT_TAG_FULL MATCHES "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)$")
+if(NOT VERSION_FULL MATCHES "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)$")
     message(FATAL_ERROR
         "\n"
-        "  error-dashboard: Git tag '${GIT_TAG_FULL}' does not match the required format.\n"
+        "  error-dashboard: VERSION file contains '${VERSION_FULL}' which does not match the required format.\n"
         "  Expected format: v1.0.0.0 (vMAJOR.MINOR.PATCH.TWEAK)\n"
     )
 endif()
 
 # Extract components
 string(REGEX REPLACE "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)$"
-    "\\1" VERSION_MAJOR "${GIT_TAG_FULL}")
+    "\\1" VERSION_MAJOR "${VERSION_FULL}")
 string(REGEX REPLACE "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)$"
-    "\\2" VERSION_MINOR "${GIT_TAG_FULL}")
+    "\\2" VERSION_MINOR "${VERSION_FULL}")
 string(REGEX REPLACE "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)$"
-    "\\3" VERSION_PATCH "${GIT_TAG_FULL}")
+    "\\3" VERSION_PATCH "${VERSION_FULL}")
 string(REGEX REPLACE "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)$"
-    "\\4" VERSION_TWEAK "${GIT_TAG_FULL}")
+    "\\4" VERSION_TWEAK "${VERSION_FULL}")
 
-string(REPLACE "v" "" GIT_TAG_CLEAN "${GIT_TAG_FULL}")
+string(REPLACE "v" "" VERSION_CLEAN "${VERSION_FULL}")
 
 # Propagate to parent scope
-set(GIT_TAG_FULL   ${GIT_TAG_FULL}   PARENT_SCOPE)
-set(GIT_TAG_CLEAN  ${GIT_TAG_CLEAN}  PARENT_SCOPE)
+set(VERSION_FULL   ${VERSION_FULL}   PARENT_SCOPE)
+set(VERSION_CLEAN  ${VERSION_CLEAN}  PARENT_SCOPE)
 set(VERSION_MAJOR  ${VERSION_MAJOR}  PARENT_SCOPE)
 set(VERSION_MINOR  ${VERSION_MINOR}  PARENT_SCOPE)
 set(VERSION_PATCH  ${VERSION_PATCH}  PARENT_SCOPE)
 set(VERSION_TWEAK  ${VERSION_TWEAK}  PARENT_SCOPE)
 
-message(STATUS "error-dashboard version: ${GIT_TAG_FULL}")
+message(STATUS "error-dashboard version: ${VERSION_FULL}")
