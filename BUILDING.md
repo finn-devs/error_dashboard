@@ -1,6 +1,6 @@
-# Building error-surface from Source
+# Building error-dashboard from Source
 
-error-surface is a native C++/Qt6 Linux system monitoring and log analysis tool.
+error-dashboard is a native C++/Qt6 Linux system monitoring and log analysis tool.
 It interfaces directly with systemd journal and dmesg and is therefore
 **Linux-only**. It will not build or run on Windows or macOS.
 
@@ -99,8 +99,8 @@ sudo zypper install -y \
 
 ```bash
 # Clone the repository
-git clone https://github.com/[your-github-handle]/error-surface.git
-cd error-surface
+git clone https://github.com/[your-github-handle]/error-dashboard.git
+cd error-dashboard
 
 # Configure
 cmake -B build \
@@ -111,17 +111,17 @@ cmake -B build \
 cmake --build build --parallel
 ```
 
-The compiled binary will be at `build/error-surface`.
+The compiled binary will be at `build/error-dashboard`.
 
 ---
 
 ## Running
 
 ```bash
-./build/error-surface
+./build/error-dashboard
 ```
 
-error-surface reads from the systemd journal and dmesg. Reading journal entries
+error-dashboard reads from the systemd journal and dmesg. Reading journal entries
 may require your user to be a member of the `systemd-journal` group:
 
 ```bash
@@ -149,7 +149,7 @@ There is no install target defined by default. To make the binary available
 system-wide, copy it manually:
 
 ```bash
-sudo cp build/error-surface /usr/local/bin/
+sudo cp build/error-dashboard /usr/local/bin/
 ```
 
 ---
@@ -174,8 +174,8 @@ Add your user to the `systemd-journal` group as described in the Running section
 
 ## License
 
-error-surface is source-available under the
-[error-surface Source-Available License](LICENSE). Commercial use requires a
+error-dashboard is source-available under the
+[error-dashboard Source-Available License](LICENSE). Commercial use requires a
 separate written license from Frederick Finn / Finn Devs. See [LICENSE](LICENSE)
 for full terms.
 

@@ -304,7 +304,7 @@ void SettingsDrawer::setupUI() {
     // DB path
     auto* pathLabel = new QLabel("Database path");
     m_dbPathEdit = new QLineEdit();
-    m_dbPathEdit->setPlaceholderText("~/.local/share/error-surface/events.db");
+    m_dbPathEdit->setPlaceholderText("~/.local/share/error-dashboard/events.db");
     m_dbPathEdit->setText(m_persistence->currentPath());
     contentLayout->addWidget(makeRow(pathLabel, m_dbPathEdit));
 

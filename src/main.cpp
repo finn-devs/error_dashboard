@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
-    QApplication::setApplicationName("error-surface");
+    QApplication::setApplicationName("error-dashboard");
     QApplication::setApplicationVersion("1.0");
     
     qDebug() << "\nError Surface - Qt6 Native Edition\n";

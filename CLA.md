@@ -1,7 +1,7 @@
-# error-surface Contributor License Agreement
+# error-dashboard Contributor License Agreement
 Version 1.0, February 2026
 
-**Project:** error-surface  
+**Project:** error-dashboard  
 **Copyright Holder:** Frederick Finn / Finn Devs
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -9,13 +9,13 @@ Version 1.0, February 2026
 ## Purpose
 
 This Contributor License Agreement ("Agreement") defines the terms under which
-You contribute to error-surface. It protects You as a contributor by making
+You contribute to error-dashboard. It protects You as a contributor by making
 your rights explicit, and it protects Frederick Finn / Finn Devs ("the
 Maintainer") by establishing clear ownership and licensing terms that allow
 the project to be maintained, developed, and commercially licensed without
 legal ambiguity.
 
-By submitting a Contribution to error-surface, You agree to the terms of this
+By submitting a Contribution to error-dashboard, You agree to the terms of this
 Agreement.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -26,7 +26,7 @@ Agreement.
 
 **"Contribution"** means any original work of authorship, including any
 modifications or additions to existing work, that You intentionally submit to
-error-surface by any means, including pull requests, patches, issues containing
+error-dashboard by any means, including pull requests, patches, issues containing
 code, or any other form of communication to the Maintainer or the project
 repository.
 
@@ -44,7 +44,7 @@ license to:
 
 - Reproduce, prepare Derivative Works of, publicly display, publicly perform,
   sublicense, and distribute Your Contributions and Derivative Works thereof;
-- Use Your Contributions in any current or future version of error-surface;
+- Use Your Contributions in any current or future version of error-dashboard;
 - License Your Contributions under any license, including commercial licenses,
   at the Maintainer's sole discretion.
 
@@ -78,7 +78,7 @@ By submitting a Contribution, You represent and warrant that:
      obtained all necessary permissions from that entity to enter into this
      Agreement;
   e) You understand that Your Contribution will be made available under the
-     error-surface Source-Available License and may also be made available
+     error-dashboard Source-Available License and may also be made available
      under commercial licenses issued by the Maintainer.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -87,7 +87,7 @@ By submitting a Contribution, You represent and warrant that:
 
 The Maintainer is under no obligation to accept, review, or include any
 Contribution in the project. Submission of a Contribution does not guarantee
-its inclusion in error-surface.
+its inclusion in error-dashboard.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -111,7 +111,7 @@ not required to provide support for Your Contributions.
 To have your pull request accepted, you must confirm your agreement to this CLA.
 Add the following statement as a comment on your pull request:
 
-> "I have read and agree to the error-surface Contributor License Agreement
+> "I have read and agree to the error-dashboard Contributor License Agreement
 > (CLA.md). My contribution is my own original work and I have the right to
 > submit it under these terms."
 

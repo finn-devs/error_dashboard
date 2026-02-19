@@ -21,7 +21,7 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Charts Sql)
 
 # ── Executable ───────────────────────────────────────────────────────────────
-add_executable(error-surface
+add_executable(error-dashboard
     src/main.cpp
     src/logcollector.cpp
     src/threatdetector.cpp
@@ -37,13 +37,13 @@ add_executable(error-surface
 #   #include "version.h"
 #   qDebug() << APP_VERSION;   // "1.0.0.0"
 #   qDebug() << APP_VERSION_FULL; // "v1.0.0.0"
-target_compile_definitions(error-surface PRIVATE
+target_compile_definitions(error-dashboard PRIVATE
     APP_VERSION="${GIT_TAG_CLEAN}"
     APP_VERSION_FULL="${GIT_TAG_FULL}"
 )
 
 # ── Link libraries ───────────────────────────────────────────────────────────
-target_link_libraries(error-surface
+target_link_libraries(error-dashboard
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
@@ -53,6 +53,6 @@ target_link_libraries(error-surface
 )
 
 # ── Include directories ───────────────────────────────────────────────────────
-target_include_directories(error-surface PRIVATE
+target_include_directories(error-dashboard PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )

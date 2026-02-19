@@ -30,7 +30,7 @@ execute_process(
 if(NOT GIT_TAG_RESULT EQUAL 0)
     message(FATAL_ERROR
         "\n"
-        "  error-surface: No valid Git version tag found on HEAD.\n"
+        "  error-dashboard: No valid Git version tag found on HEAD.\n"
         "  A tag in the format v1.0.0.0 is required to configure the build.\n"
         "\n"
         "  To tag the current commit:\n"
@@ -45,7 +45,7 @@ endif()
 if(NOT GIT_TAG_FULL MATCHES "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)$")
     message(FATAL_ERROR
         "\n"
-        "  error-surface: Git tag '${GIT_TAG_FULL}' does not match the required format.\n"
+        "  error-dashboard: Git tag '${GIT_TAG_FULL}' does not match the required format.\n"
         "  Expected format: v1.0.0.0 (vMAJOR.MINOR.PATCH.TWEAK)\n"
     )
 endif()
@@ -70,4 +70,4 @@ set(VERSION_MINOR  ${VERSION_MINOR}  PARENT_SCOPE)
 set(VERSION_PATCH  ${VERSION_PATCH}  PARENT_SCOPE)
 set(VERSION_TWEAK  ${VERSION_TWEAK}  PARENT_SCOPE)
 
-message(STATUS "error-surface version: ${GIT_TAG_FULL}")
+message(STATUS "error-dashboard version: ${GIT_TAG_FULL}")

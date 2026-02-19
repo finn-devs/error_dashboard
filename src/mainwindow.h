@@ -62,7 +62,7 @@ private:
     // exist in the DB are not double-shown.
     void mergeAndDisplay(const QVector<LogEntry>& freshEntries);
 
-    // Default XDG-compliant DB path (~/.local/share/error-surface/events.db)
+    // Default XDG-compliant DB path (~/.local/share/error-dashboard/events.db)
     static QString defaultDbPath();
 };
 

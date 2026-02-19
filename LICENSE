@@ -1,17 +1,17 @@
-error-surface Source-Available License
+error-dashboard Source-Available License
 Version 1.0, February 2026
 
 Copyright (c) 2026 Frederick Finn / Finn Devs
 All rights reserved.
 
-Project: error-surface
+Project: error-dashboard
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 PREAMBLE
 
 This license governs the use, modification, and distribution of the
-error-surface software and all associated source code, documentation, and
+error-dashboard software and all associated source code, documentation, and
 assets (collectively, "the Software"). It is designed to allow free personal
 use and study of the Software while reserving all commercial rights exclusively
 to Frederick Finn / Finn Devs.
@@ -20,7 +20,7 @@ to Frederick Finn / Finn Devs.
 
 1. DEFINITIONS
 
-"The Software" means the error-surface source code, binaries, documentation,
+"The Software" means the error-dashboard source code, binaries, documentation,
 and any associated files made available under this license.
 
 "You" means the individual or entity exercising rights under this license.
@@ -75,7 +75,7 @@ You may NOT, without prior written permission from Frederick Finn / Finn Devs:
      present in the Software;
   d) Sublicense, sell, rent, lease, or transfer any rights in the Software
      to any third party;
-  e) Use the name "error-surface", "Finn Devs", or "Frederick Finn" to endorse
+  e) Use the name "error-dashboard", "Finn Devs", or "Frederick Finn" to endorse
      or promote products or services derived from the Software without prior
      written consent.
 
@@ -89,7 +89,7 @@ If You Distribute any Derivative Work, You must:
      publicly available under this license, at no charge, at the time of
      distribution or immediately thereafter;
   b) Include a prominent notice stating that the Derivative Work is derived
-     from error-surface and is subject to this license;
+     from error-dashboard and is subject to this license;
   c) Retain all original copyright, attribution, and license notices from
      the Software;
   d) Include a copy of this license with every distribution of the Derivative
@@ -106,8 +106,8 @@ All permitted uses and distributions of the Software or Derivative Works must
 include the following attribution in a location reasonably visible to end users
 and in any accompanying documentation:
 
-  "This software is based on error-surface, developed by Frederick Finn /
-   Finn Devs. https://github.com/[your-github-handle]/error-surface"
+  "This software is based on error-dashboard, developed by Frederick Finn /
+   Finn Devs. https://github.com/[your-github-handle]/error-dashboard"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -129,7 +129,7 @@ Finn Devs and may be subject to fees and additional terms.
 7. CONTRIBUTIONS
 
 Any contribution intentionally submitted to this project is subject to the
-error-surface Contributor License Agreement (CLA). By submitting a contribution,
+error-dashboard Contributor License Agreement (CLA). By submitting a contribution,
 You represent that You have read, understood, and agreed to the CLA. No
 contribution will be accepted without a signed CLA on file.
 

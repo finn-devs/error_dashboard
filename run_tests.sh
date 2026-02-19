@@ -1,9 +1,9 @@
 #!/bin/bash
-# Test runner script for error-surface-qt
+# Test runner script for error-dashboard-qt
 
 set -e
 
-PROJECT_DIR="$HOME/error-surface-qt"
+PROJECT_DIR="$HOME/error-dashboard-qt"
 TEST_DIR="$PROJECT_DIR/tests"
 BUILD_DIR="$PROJECT_DIR/build-tests"
 
@@ -16,8 +16,8 @@ echo ""
 if [ ! -d "$PROJECT_DIR/src" ]; then
     echo "ERROR: $PROJECT_DIR/src not found."
     echo "Expected project layout:"
-    echo "  ~/error-surface-qt/src/*.h *.cpp"
-    echo "  ~/error-surface-qt/tests/test_errorsurface.cpp"
+    echo "  ~/error-dashboard-qt/src/*.h *.cpp"
+    echo "  ~/error-dashboard-qt/tests/test_errorsurface.cpp"
     exit 1
 fi
 

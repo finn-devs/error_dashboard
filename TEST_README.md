@@ -1,7 +1,7 @@
 # Error Surface Qt - Test Suite Documentation
 
 ## Overview
-Comprehensive test suite covering all components of the error-surface-qt application using Qt Test framework.
+Comprehensive test suite covering all components of the error-dashboard-qt application using Qt Test framework.
 
 ## Test Coverage
 
@@ -52,7 +52,7 @@ Comprehensive test suite covering all components of the error-surface-qt applica
 
 ### Quick Start
 ```bash
-cd ~/Projects/error-surface-qt
+cd ~/Projects/error-dashboard-qt
 chmod +x run_tests.sh
 ./run_tests.sh
 ```
@@ -60,8 +60,8 @@ chmod +x run_tests.sh
 ### Manual Execution
 ```bash
 # Create test directory
-mkdir -p ~/Projects/error-surface-qt/tests
-cd ~/Projects/error-surface-qt/tests
+mkdir -p ~/Projects/error-dashboard-qt/tests
+cd ~/Projects/error-dashboard-qt/tests
 
 # Copy test files
 cp test_errorsurface.cpp .
@@ -85,7 +85,7 @@ make -j$(nproc)
 
 ### Using CTest
 ```bash
-cd ~/Projects/error-surface-qt/build-tests
+cd ~/Projects/error-dashboard-qt/build-tests
 ctest --verbose
 ctest --output-on-failure
 ```
@@ -186,7 +186,7 @@ jobs:
 To generate coverage report:
 
 ```bash
-cd ~/Projects/error-surface-qt/build-tests
+cd ~/Projects/error-dashboard-qt/build-tests
 cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="--coverage" ../tests
 make
 ./test_errorsurface
