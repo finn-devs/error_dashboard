@@ -1,0 +1,81 @@
+name: Build error-surface
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── Checkout ────────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── System dependencies ─────────────────────────────────────────────────
+      # Qt6 (Core, Gui, Widgets, Charts, Sql), libsystemd, and build tooling
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            cmake \
+            ninja-build \
+            gcc \
+            g++ \
+            libsystemd-dev \
+            qt6-base-dev \
+            qt6-charts-dev \
+            libqt6sql6-sqlite \
+            libgl1-mesa-dev \
+            libglib2.0-dev \
+            libxkbcommon-dev \
+            libvulkan-dev
+
+      # ── Configure ───────────────────────────────────────────────────────────
+      - name: Configure with CMake
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_CXX_STANDARD=17 \
+            -G Ninja
+
+      # ── Build ───────────────────────────────────────────────────────────────
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      # ── Test ────────────────────────────────────────────────────────────────
+      # Runs the full Qt Test suite before packaging.
+      # QT_QPA_PLATFORM=offscreen prevents tests from requiring a display.
+      - name: Run tests
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          cd build
+          ctest --output-on-failure --parallel 4
+
+      # ── Package source tarball ───────────────────────────────────────────────
+      # Bundles the full source tree with LICENSE, CLA, and BUILDING.md into
+      # a versioned tarball. Uses git archive to exclude build artifacts and
+      # git internals cleanly.
+      - name: Package source tarball
+        run: |
+          mkdir -p dist
+          git archive \
+            --format=tar.gz \
+            --prefix=error-surface-${{ github.sha }}/ \
+            --output=dist/error-surface-src-${{ github.sha }}.tar.gz \
+            HEAD
+
+      # ── Upload artifact ─────────────────────────────────────────────────────
+      # Retains the source tarball for 30 days, downloadable from the
+      # Actions run page. Switch to a release job + gh-release action
+      # when you are ready to publish versioned releases.
+      - name: Upload source tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: error-surface-src-${{ github.sha }}
+          path: dist/error-surface-src-${{ github.sha }}.tar.gz
+          retention-days: 30
