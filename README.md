@@ -1,3 +1,4 @@
+
 # Error Surface - Qt6 Native Edition
 
 Native C++/Qt6 rewrite of the Error Surface log analyzer with identical look and functionality to the Python/Dash version.
@@ -11,6 +12,9 @@ Native C++/Qt6 rewrite of the Error Surface log analyzer with identical look and
 - **Full Filtering**: Severity groups, unit filter, search, threats-only view
 - **Detail Panel**: Click any row to expand full event details with threat breakdown
 - **CSV Export**: Export filtered results with timestamps
+
+<img width="2490" height="1533" alt="Screenshot from 2026-02-18 19-42-40" src="https://github.com/user-attachments/assets/746a0969-2f5a-40f6-afef-e2e25d3d56a4" />
+<img width="2490" height="1533" alt="Screenshot from 2026-02-18 19-42-51" src="https://github.com/user-attachments/assets/cb461de2-f66e-41e4-a9cc-be01bb7f630b" />
 
 ## Dependencies
 
