@@ -11,7 +11,7 @@
 #include "src/persistencemanager.h"
 #include "src/settingsdrawer.h"
 
-class TestErrorSurface : public QObject {
+class Testerrordashboard : public QObject {
     Q_OBJECT
 
 private slots:
@@ -106,7 +106,7 @@ private:
 // Helpers
 // ---------------------------------------------------------------------------
 
-QVector<LogEntry> TestErrorSurface::createTestEntries() {
+QVector<LogEntry> Testerrordashboard::createTestEntries() {
     QVector<LogEntry> entries;
 
     LogEntry critical;
@@ -147,7 +147,7 @@ QVector<LogEntry> TestErrorSurface::createTestEntries() {
     return entries;
 }
 
-LogEntry TestErrorSurface::createTestEntry(const QString& severity,
+LogEntry Testerrordashboard::createTestEntry(const QString& severity,
                                             const QString& message,
                                             const QString& unit) {
     LogEntry entry;
@@ -170,7 +170,7 @@ LogEntry TestErrorSurface::createTestEntry(const QString& severity,
     return entry;
 }
 
-PersistenceManager* TestErrorSurface::createTempPersistence() {
+PersistenceManager* Testerrordashboard::createTempPersistence() {
     auto* pm = new PersistenceManager(this);
     const QString dbPath = m_tempDir.path() + QString("/test_%1.db")
                                .arg(QDateTime::currentMSecsSinceEpoch());
@@ -186,23 +186,23 @@ PersistenceManager* TestErrorSurface::createTempPersistence() {
 // Suite lifecycle
 // ---------------------------------------------------------------------------
 
-void TestErrorSurface::initTestCase() {
+void Testerrordashboard::initTestCase() {
     qDebug() << "Starting Error Surface Test Suite";
     QVERIFY(m_tempDir.isValid());
 }
 
-void TestErrorSurface::cleanupTestCase() {
+void Testerrordashboard::cleanupTestCase() {
     qDebug() << "Completed Error Surface Test Suite";
 }
 
-void TestErrorSurface::init()    {}
-void TestErrorSurface::cleanup() {}
+void Testerrordashboard::init()    {}
+void Testerrordashboard::cleanup() {}
 
 // ============================================================================
 // LogEntry Tests
 // ============================================================================
 
-void TestErrorSurface::testLogEntrySeverityLabels() {
+void Testerrordashboard::testLogEntrySeverityLabels() {
     LogEntry entry;
 
     entry.priority = 0; entry.group = "critical";
@@ -215,7 +215,7 @@ void TestErrorSurface::testLogEntrySeverityLabels() {
     QVERIFY(!entry.severityLabel().isEmpty());
 }
 
-void TestErrorSurface::testLogEntrySeverityColors() {
+void Testerrordashboard::testLogEntrySeverityColors() {
     LogEntry entry;
 
     entry.group = "critical";
@@ -231,7 +231,7 @@ void TestErrorSurface::testLogEntrySeverityColors() {
     QCOMPARE(entry.severityColor(), QColor("#888"));
 }
 
-void TestErrorSurface::testLogEntryThreatBadge() {
+void Testerrordashboard::testLogEntryThreatBadge() {
     LogEntry entry;
 
     entry.threatCount = 0;
@@ -248,31 +248,31 @@ void TestErrorSurface::testLogEntryThreatBadge() {
 // ThreatDetector Tests
 // ============================================================================
 
-void TestErrorSurface::testThreatDetectorAuthentication() {
+void Testerrordashboard::testThreatDetectorAuthentication() {
     auto threats = ThreatDetector::detectThreats("Failed password for root from 192.168.1.100", "sshd.service");
     QVERIFY(!threats.isEmpty());
     QCOMPARE(threats[0].category, QString("Authentication"));
     QCOMPARE(threats[0].severity, QString("high"));
 }
 
-void TestErrorSurface::testThreatDetectorPrivilege() {
+void Testerrordashboard::testThreatDetectorPrivilege() {
     auto threats = ThreatDetector::detectThreats("sudo: user NOT in sudoers", "sudo");
     QVERIFY(!threats.isEmpty());
     QVERIFY(threats[0].severity == "critical" || threats[0].category.contains("Privilege"));
 }
 
-void TestErrorSurface::testThreatDetectorNetwork() {
+void Testerrordashboard::testThreatDetectorNetwork() {
     auto threats = ThreatDetector::detectThreats("Connection attempt from blocked IP 10.0.0.1", "firewall");
     QVERIFY(!threats.isEmpty());
 }
 
-void TestErrorSurface::testThreatDetectorFilesystem() {
+void Testerrordashboard::testThreatDetectorFilesystem() {
     auto threats = ThreatDetector::detectThreats("Permission denied writing to /etc/passwd", "vim");
     QVERIFY(!threats.isEmpty());
     QCOMPARE(threats[0].category, QString("Filesystem"));
 }
 
-void TestErrorSurface::testThreatDetectorStability() {
+void Testerrordashboard::testThreatDetectorStability() {
     auto threats1 = ThreatDetector::detectThreats("segmentation fault at address 0x00000000", "app");
     QVERIFY(!threats1.isEmpty());
 
@@ -280,29 +280,29 @@ void TestErrorSurface::testThreatDetectorStability() {
     QVERIFY(!threats2.isEmpty());
 }
 
-void TestErrorSurface::testThreatDetectorResources() {
+void Testerrordashboard::testThreatDetectorResources() {
     auto threats = ThreatDetector::detectThreats("Out of memory: Kill process 1234", "kernel");
     QVERIFY(!threats.isEmpty());
     QCOMPARE(threats[0].severity, QString("high"));
 }
 
-void TestErrorSurface::testThreatDetectorSELinux() {
+void Testerrordashboard::testThreatDetectorSELinux() {
     auto threats = ThreatDetector::detectThreats("SELinux is preventing access to file /var/log/secure", "audit");
     QVERIFY(!threats.isEmpty());
 }
 
-void TestErrorSurface::testThreatDetectorMalware() {
+void Testerrordashboard::testThreatDetectorMalware() {
     auto threats = ThreatDetector::detectThreats("Detected suspicious process: /tmp/malware.sh", "scanner");
     QVERIFY(!threats.isEmpty());
     QCOMPARE(threats[0].severity, QString("critical"));
 }
 
-void TestErrorSurface::testThreatDetectorMultipleThreats() {
+void Testerrordashboard::testThreatDetectorMultipleThreats() {
     auto threats = ThreatDetector::detectThreats("Failed authentication and permission denied for root", "system");
     QVERIFY(threats.size() >= 1);
 }
 
-void TestErrorSurface::testThreatDetectorNoThreats() {
+void Testerrordashboard::testThreatDetectorNoThreats() {
     auto threats = ThreatDetector::detectThreats("Service started successfully", "nginx.service");
     QVERIFY(threats.isEmpty());
 }
@@ -311,13 +311,13 @@ void TestErrorSurface::testThreatDetectorNoThreats() {
 // LogCollector Tests
 // ============================================================================
 
-void TestErrorSurface::testLogCollectorJournaldOpen() {
+void Testerrordashboard::testLogCollectorJournaldOpen() {
     LogCollector collector;
     auto entries = collector.collectAll(1);
     QVERIFY(entries.size() >= 0);
 }
 
-void TestErrorSurface::testLogCollectorSeverityFiltering() {
+void Testerrordashboard::testLogCollectorSeverityFiltering() {
     LogCollector collector;
     auto entries = collector.collectAll(1);
     for (const auto& entry : entries) {
@@ -329,7 +329,7 @@ void TestErrorSurface::testLogCollectorSeverityFiltering() {
     }
 }
 
-void TestErrorSurface::testLogCollectorTimeFiltering() {
+void Testerrordashboard::testLogCollectorTimeFiltering() {
     LogCollector collector;
     QDateTime since = QDateTime::currentDateTimeUtc().addSecs(-7200);
     auto entries = collector.collectLive(120);
@@ -338,7 +338,7 @@ void TestErrorSurface::testLogCollectorTimeFiltering() {
     }
 }
 
-void TestErrorSurface::testLogCollectorDmesgFallback() {
+void Testerrordashboard::testLogCollectorDmesgFallback() {
     // collectDmesg is private; exercise it through the public collectAll interface
     // and verify that any dmesg-sourced entries are correctly tagged.
     LogCollector collector;
@@ -361,20 +361,20 @@ void TestErrorSurface::testLogCollectorDmesgFallback() {
 // StatsTab Tests
 // ============================================================================
 
-void TestErrorSurface::testStatsTabDataLoading() {
+void Testerrordashboard::testStatsTabDataLoading() {
     StatsTab tab("scan");
     tab.setData(createTestEntries());
     QVERIFY(tab.entryCount() == 9);
 }
 
-void TestErrorSurface::testStatsTabStatCounts() {
+void Testerrordashboard::testStatsTabStatCounts() {
     StatsTab tab("scan");
     tab.setData(createTestEntries());
     // 1 critical + 5 errors + 3 warnings = 9 total; verified via entryCount
     QCOMPARE(tab.entryCount(), 9);
 }
 
-void TestErrorSurface::testStatsTabFiltering() {
+void Testerrordashboard::testStatsTabFiltering() {
     StatsTab tab("scan");
     tab.setData(createTestEntries());
     QSignalSpy spy(&tab, &StatsTab::needsRefresh);
@@ -382,7 +382,7 @@ void TestErrorSurface::testStatsTabFiltering() {
     QVERIFY(tab.entryCount() >= 0);
 }
 
-void TestErrorSurface::testStatsTabSearchFilter() {
+void Testerrordashboard::testStatsTabSearchFilter() {
     StatsTab tab("scan");
     auto entries = createTestEntries();
     entries.append(createTestEntry("error", "special_unique_xyz_message", "test.service"));
@@ -390,13 +390,13 @@ void TestErrorSurface::testStatsTabSearchFilter() {
     QVERIFY(tab.entryCount() == 10);
 }
 
-void TestErrorSurface::testStatsTabUnitFilter() {
+void Testerrordashboard::testStatsTabUnitFilter() {
     StatsTab tab("scan");
     tab.setData(createTestEntries());
     QVERIFY(tab.entryCount() > 0);
 }
 
-void TestErrorSurface::testStatsTabClickableCards() {
+void Testerrordashboard::testStatsTabClickableCards() {
     // Verify that clicking the card container triggers filter activation.
     // We simulate a mouse press event on the card widget itself.
     StatsTab tab("scan");
@@ -421,7 +421,7 @@ void TestErrorSurface::testStatsTabClickableCards() {
     QVERIFY(true);
 }
 
-void TestErrorSurface::testStatsTabCardChildrenTransparentToMouse() {
+void Testerrordashboard::testStatsTabCardChildrenTransparentToMouse() {
     // Verify that QLabel children inside each stat card have
     // WA_TransparentForMouseEvents set, meaning clicks on the label
     // pass through to the card container.
@@ -442,13 +442,13 @@ void TestErrorSurface::testStatsTabCardChildrenTransparentToMouse() {
     QVERIFY2(foundCard, "No stat cards with severity property found in StatsTab");
 }
 
-void TestErrorSurface::testStatsTabChartGeneration() {
+void Testerrordashboard::testStatsTabChartGeneration() {
     StatsTab tab("scan");
     tab.setData(createTestEntries());
     QVERIFY(true);  // Charts generated without crash
 }
 
-void TestErrorSurface::testStatsTabExportCSV() {
+void Testerrordashboard::testStatsTabExportCSV() {
     StatsTab tab("scan");
     tab.setData(createTestEntries());
     QVERIFY(true);  // Export dialog requires user interaction; non-crash verified
@@ -458,24 +458,24 @@ void TestErrorSurface::testStatsTabExportCSV() {
 // MainWindow Tests
 // ============================================================================
 
-void TestErrorSurface::testMainWindowInitialization() {
+void Testerrordashboard::testMainWindowInitialization() {
     MainWindow window(7, 60, 5);
     QCOMPARE(window.windowTitle(), QString("Error Surface"));
 }
 
-void TestErrorSurface::testMainWindowTabSwitching() {
+void Testerrordashboard::testMainWindowTabSwitching() {
     MainWindow window(7, 60, 5);
     window.show();
     QVERIFY(true);
 }
 
-void TestErrorSurface::testMainWindowLivePolling() {
+void Testerrordashboard::testMainWindowLivePolling() {
     MainWindow window(7, 60, 5);
     window.startCollections();
     QVERIFY(true);
 }
 
-void TestErrorSurface::testMainWindowGearButton() {
+void Testerrordashboard::testMainWindowGearButton() {
     MainWindow window(7, 60, 5);
     window.show();
 
@@ -485,7 +485,7 @@ void TestErrorSurface::testMainWindowGearButton() {
     QVERIFY(gearBtn->isVisible());
 }
 
-void TestErrorSurface::testMainWindowSettingsDrawerToggle() {
+void Testerrordashboard::testMainWindowSettingsDrawerToggle() {
     MainWindow window(7, 60, 5);
     window.show();
 
@@ -511,7 +511,7 @@ void TestErrorSurface::testMainWindowSettingsDrawerToggle() {
 // PersistenceManager Tests
 // ============================================================================
 
-void TestErrorSurface::testPersistenceOpenClose() {
+void Testerrordashboard::testPersistenceOpenClose() {
     auto* pm = new PersistenceManager(this);
     const QString path = m_tempDir.path() + "/openclose.db";
 
@@ -525,7 +525,7 @@ void TestErrorSurface::testPersistenceOpenClose() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceFingerprintStability() {
+void Testerrordashboard::testPersistenceFingerprintStability() {
     // Same entry must always produce the same fingerprint
     LogEntry e = createTestEntry("error", "disk failure detected", "disk.service");
     e.timestamp = QDateTime(QDate(2024, 1, 15), QTime(12, 0, 0), Qt::UTC);
@@ -537,7 +537,7 @@ void TestErrorSurface::testPersistenceFingerprintStability() {
     QCOMPARE(fp1.length(), 64);  // SHA256 hex = 64 chars
 }
 
-void TestErrorSurface::testPersistenceFingerprintUniqueness() {
+void Testerrordashboard::testPersistenceFingerprintUniqueness() {
     // Different events produce different fingerprints
     LogEntry e1 = createTestEntry("error", "disk failure", "disk.service");
     e1.timestamp = QDateTime(QDate(2024, 1, 15), QTime(12, 0, 0), Qt::UTC);
@@ -552,7 +552,7 @@ void TestErrorSurface::testPersistenceFingerprintUniqueness() {
     QVERIFY(PersistenceManager::computeFingerprint(e1) != PersistenceManager::computeFingerprint(e3));
 }
 
-void TestErrorSurface::testPersistenceUpsertNew() {
+void Testerrordashboard::testPersistenceUpsertNew() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
 
@@ -565,7 +565,7 @@ void TestErrorSurface::testPersistenceUpsertNew() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceUpsertIdempotent() {
+void Testerrordashboard::testPersistenceUpsertIdempotent() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
 
@@ -586,7 +586,7 @@ void TestErrorSurface::testPersistenceUpsertIdempotent() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceUpsertBatch() {
+void Testerrordashboard::testPersistenceUpsertBatch() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
 
@@ -603,7 +603,7 @@ void TestErrorSurface::testPersistenceUpsertBatch() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceTtlAppliedToNewOnly() {
+void Testerrordashboard::testPersistenceTtlAppliedToNewOnly() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
     pm->setTtlDays(30);
@@ -627,7 +627,7 @@ void TestErrorSurface::testPersistenceTtlAppliedToNewOnly() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceTtlExpiry() {
+void Testerrordashboard::testPersistenceTtlExpiry() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
 
@@ -648,7 +648,7 @@ void TestErrorSurface::testPersistenceTtlExpiry() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceLoadActiveEvents() {
+void Testerrordashboard::testPersistenceLoadActiveEvents() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
     pm->setTtlDays(365);
@@ -669,7 +669,7 @@ void TestErrorSurface::testPersistenceLoadActiveEvents() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceLoadExcludesExpired() {
+void Testerrordashboard::testPersistenceLoadExcludesExpired() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
     pm->setTtlDays(365);
@@ -699,7 +699,7 @@ void TestErrorSurface::testPersistenceLoadExcludesExpired() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistencePurgeExpired() {
+void Testerrordashboard::testPersistencePurgeExpired() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
     pm->setTtlDays(1);
@@ -732,7 +732,7 @@ void TestErrorSurface::testPersistencePurgeExpired() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceClearAll() {
+void Testerrordashboard::testPersistenceClearAll() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
     pm->setTtlDays(365);
@@ -746,7 +746,7 @@ void TestErrorSurface::testPersistenceClearAll() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceDatabaseSize() {
+void Testerrordashboard::testPersistenceDatabaseSize() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
 
@@ -762,7 +762,7 @@ void TestErrorSurface::testPersistenceDatabaseSize() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceThreatJsonRoundtrip() {
+void Testerrordashboard::testPersistenceThreatJsonRoundtrip() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
     pm->setTtlDays(365);
@@ -791,7 +791,7 @@ void TestErrorSurface::testPersistenceThreatJsonRoundtrip() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceScanRunRecorded() {
+void Testerrordashboard::testPersistenceScanRunRecorded() {
     // upsertEvents records a scan_run; we verify it doesn't crash
     // (direct access to scan_runs requires exposing the DB, so we test via upsert behavior)
     auto* pm = createTempPersistence();
@@ -809,7 +809,7 @@ void TestErrorSurface::testPersistenceScanRunRecorded() {
     delete pm;
 }
 
-void TestErrorSurface::testPersistenceReopenSameFile() {
+void Testerrordashboard::testPersistenceReopenSameFile() {
     // Data persists across close/reopen cycles
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
@@ -840,7 +840,7 @@ void TestErrorSurface::testPersistenceReopenSameFile() {
 // SettingsDrawer Tests
 // ============================================================================
 
-void TestErrorSurface::testSettingsDrawerCreation() {
+void Testerrordashboard::testSettingsDrawerCreation() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
     QWidget parent;
@@ -854,7 +854,7 @@ void TestErrorSurface::testSettingsDrawerCreation() {
     delete pm;
 }
 
-void TestErrorSurface::testSettingsDrawerTtlSignal() {
+void Testerrordashboard::testSettingsDrawerTtlSignal() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
     pm->setTtlDays(30);
@@ -879,7 +879,7 @@ void TestErrorSurface::testSettingsDrawerTtlSignal() {
     delete pm;
 }
 
-void TestErrorSurface::testSettingsDrawerRefreshStats() {
+void Testerrordashboard::testSettingsDrawerRefreshStats() {
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
     pm->setTtlDays(365);
@@ -901,7 +901,7 @@ void TestErrorSurface::testSettingsDrawerRefreshStats() {
 // Integration Tests
 // ============================================================================
 
-void TestErrorSurface::testEndToEndDataFlow() {
+void Testerrordashboard::testEndToEndDataFlow() {
     LogCollector collector;
     auto entries = collector.collectAll(1);
 
@@ -915,7 +915,7 @@ void TestErrorSurface::testEndToEndDataFlow() {
     QVERIFY(tab.entryCount() >= 0);
 }
 
-void TestErrorSurface::testEndToEndPersistenceAndMerge() {
+void Testerrordashboard::testEndToEndPersistenceAndMerge() {
     // Full round-trip: collect → persist → load → display, no duplicates
     auto* pm = createTempPersistence();
     QVERIFY2(pm != nullptr, "Failed to create temp database");
@@ -939,7 +939,7 @@ void TestErrorSurface::testEndToEndPersistenceAndMerge() {
     delete pm;
 }
 
-void TestErrorSurface::testThreatDetectionPipeline() {
+void Testerrordashboard::testThreatDetectionPipeline() {
     auto entries = createTestEntries();
 
     int totalThreats = 0;
@@ -949,7 +949,7 @@ void TestErrorSurface::testThreatDetectionPipeline() {
     QVERIFY(totalThreats > 0);
 }
 
-void TestErrorSurface::testUIResponsiveness() {
+void Testerrordashboard::testUIResponsiveness() {
     QVector<LogEntry> largeDataset;
     largeDataset.reserve(10000);
     for (int i = 0; i < 10000; i++)
@@ -970,5 +970,5 @@ void TestErrorSurface::testUIResponsiveness() {
 // Test Runner
 // ============================================================================
 
-QTEST_MAIN(TestErrorSurface)
-#include "test_errorsurface.moc"
+QTEST_MAIN(Testerrordashboard)
+#include "test_errordashboard.moc"

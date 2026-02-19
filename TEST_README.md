@@ -64,7 +64,7 @@ mkdir -p ~/Projects/error-dashboard-qt/tests
 cd ~/Projects/error-dashboard-qt/tests
 
 # Copy test files
-cp test_errorsurface.cpp .
+cp test_errordashboard.cpp .
 cp CMakeLists_tests.txt CMakeLists.txt
 
 # Build
@@ -74,13 +74,13 @@ cmake ../tests
 make -j$(nproc)
 
 # Run all tests
-./test_errorsurface
+./test_errordashboard
 
 # Run with verbose output
-./test_errorsurface -v2
+./test_errordashboard -v2
 
 # Run specific test
-./test_errorsurface testThreatDetectorAuthentication
+./test_errordashboard testThreatDetectorAuthentication
 ```
 
 ### Using CTest
@@ -120,15 +120,15 @@ System libraries:
 All 32 tests should PASS on a properly configured system:
 
 ```
-********* Start testing of TestErrorSurface *********
+********* Start testing of Testerrordashboard *********
 Config: Using QtTest library 6.x.x
-PASS   : TestErrorSurface::initTestCase()
-PASS   : TestErrorSurface::testLogEntrySeverityLabels()
-PASS   : TestErrorSurface::testLogEntrySeverityColors()
+PASS   : Testerrordashboard::initTestCase()
+PASS   : Testerrordashboard::testLogEntrySeverityLabels()
+PASS   : Testerrordashboard::testLogEntrySeverityColors()
 ...
-PASS   : TestErrorSurface::cleanupTestCase()
+PASS   : Testerrordashboard::cleanupTestCase()
 Totals: 32 passed, 0 failed, 0 skipped, 0 blacklisted
-********* Finished testing of TestErrorSurface *********
+********* Finished testing of Testerrordashboard *********
 ```
 
 ## Troubleshooting
@@ -137,13 +137,13 @@ Totals: 32 passed, 0 failed, 0 skipped, 0 blacklisted
 
 **Journal Access Failed**
 ```
-FAIL! : TestErrorSurface::testLogCollectorJournaldOpen()
+FAIL! : Testerrordashboard::testLogCollectorJournaldOpen()
 ```
 Solution: Ensure user is in `adm` group or running with proper permissions
 
 **Chart Tests Fail**
 ```
-FAIL! : TestErrorSurface::testStatsTabChartGeneration()
+FAIL! : Testerrordashboard::testStatsTabChartGeneration()
 ```
 Solution: Verify Qt6Charts is installed: `sudo apt install qt6-charts-dev`
 
@@ -189,7 +189,7 @@ To generate coverage report:
 cd ~/Projects/error-dashboard-qt/build-tests
 cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="--coverage" ../tests
 make
-./test_errorsurface
+./test_errordashboard
 lcov --capture --directory . --output-file coverage.info
 genhtml coverage.info --output-directory coverage-report
 ```
@@ -201,7 +201,7 @@ View report: `firefox coverage-report/index.html`
 Template for adding new test cases:
 
 ```cpp
-void TestErrorSurface::testNewFeature() {
+void Testerrordashboard::testNewFeature() {
     // Setup
     StatsTab tab("scan");
     auto entries = createTestEntries();
@@ -215,7 +215,7 @@ void TestErrorSurface::testNewFeature() {
 }
 ```
 
-Add to test class in `test_errorsurface.cpp`:
+Add to test class in `test_errordashboard.cpp`:
 ```cpp
 private slots:
     void testNewFeature();

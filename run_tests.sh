@@ -17,7 +17,7 @@ if [ ! -d "$PROJECT_DIR/src" ]; then
     echo "ERROR: $PROJECT_DIR/src not found."
     echo "Expected project layout:"
     echo "  ~/error-dashboard-qt/src/*.h *.cpp"
-    echo "  ~/error-dashboard-qt/tests/test_errorsurface.cpp"
+    echo "  ~/error-dashboard-qt/tests/test_errordashboard.cpp"
     exit 1
 fi
 
@@ -44,7 +44,7 @@ echo "================================="
 echo ""
 
 # Run with verbose output
-./test_errorsurface -v2
+./test_errordashboard -v2
 
 TEST_RESULT=$?
 

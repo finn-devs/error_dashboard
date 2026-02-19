@@ -21,7 +21,7 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Charts Sql)
 
 # ── Executable ───────────────────────────────────────────────────────────────
-add_executable(error-surface
+add_executable(error-dashboard
     src/main.cpp
     src/logcollector.cpp
     src/threatdetector.cpp
@@ -43,7 +43,7 @@ target_compile_definitions(error-dashboard PRIVATE
 )
 
 # ── Link libraries ───────────────────────────────────────────────────────────
-target_link_libraries(error-surface
+target_link_libraries(error-dashboard
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
@@ -53,6 +53,6 @@ target_link_libraries(error-surface
 )
 
 # ── Include directories ───────────────────────────────────────────────────────
-target_include_directories(error-surface PRIVATE
+target_include_directories(error-dashboard PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
